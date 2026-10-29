@@ -1,4 +1,4 @@
-# joba/laravel-esign-v3
+# joba-tech/laravel-esign-v3
 
 E签宝 SaaS API V3 PHP 服务封装，面向[普通签署流程](https://open.esign.cn/doc/opendoc/pdf-sign3/tv8gsiqwk2z00wwi)，不集成 PaaS SDK3。保留分模块调用方式，统一处理 HMAC-SHA256 请求签名、文件上传、响应异常和回调验签。核心 Client 不依赖 Laravel，Laravel 项目可直接通过容器或 Facade 使用。
 
@@ -11,7 +11,7 @@ E签宝 SaaS API V3 PHP 服务封装，面向[普通签署流程](https://open.e
 仓库推送并登记 Packagist 后，在业务项目中安装：
 
 ```bash
-composer require joba/laravel-esign-v3:^1.0
+composer require joba-tech/laravel-esign-v3:^1.0
 ```
 
 本地开发、尚未登记 Packagist 时，可在业务项目通过 path repository 引入本包。将 `url` 替换为本包的实际目录：
@@ -23,15 +23,15 @@ composer require joba/laravel-esign-v3:^1.0
             "type": "path",
             "url": "../laravel-esign-v3",
             "options": {
-                "versions": {"joba/laravel-esign-v3": "1.0.0"}
+                "versions": {"joba-tech/laravel-esign-v3": "1.0.0"}
             }
         }
     ],
-    "require": {"joba/laravel-esign-v3": "^1.0"}
+    "require": {"joba-tech/laravel-esign-v3": "^1.0"}
 }
 ```
 
-把包目录放在对应路径后执行 `composer update joba/laravel-esign-v3`。发布到独立仓库时以本目录为仓库根目录，不需要当前业务项目的代码。
+把包目录放在对应路径后执行 `composer update joba-tech/laravel-esign-v3`。发布到独立仓库时以本目录为仓库根目录，不需要当前业务项目的代码。
 
 ## Laravel 配置
 

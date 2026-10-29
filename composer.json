@@ -1,5 +1,5 @@
 {
-    "name": "joba/laravel-esign-v3",
+    "name": "joba-tech/laravel-esign-v3",
     "description": "E签宝 SaaS API V3 PHP SDK，支持 Laravel 服务容器、Facade 和回调验签",
     "type": "library",
     "license": "MIT",

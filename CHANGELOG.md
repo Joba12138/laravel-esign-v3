@@ -2,6 +2,8 @@
 
 ## Unreleased
 
+- Composer 包名改为 `joba-tech/laravel-esign-v3`，PHP 命名空间 `Joba\Esign` 与 `app('esign')` 调用保持兼容。
+
 - 回调验签中间件命名为 `VerifyWebhookSignature`，自动注册 `esign.signature` 路由别名，默认无需发布或继承。
 - 保留 `VerifyEsignCallback` 兼容类，已有引用和本地继承类可继续使用。
 - 移除 `esign-middleware` 发布入口及 `resources/stubs` 模板，保留配置发布。
