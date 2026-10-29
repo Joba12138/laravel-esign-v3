@@ -6,7 +6,6 @@ use Illuminate\Http\Request;
 use Joba\Esign\Client;
 use Joba\Esign\Exceptions\CallbackVerificationException;
 use Joba\Esign\Exceptions\InvalidResponseException;
-use Joba\Esign\Laravel\Middleware\VerifyEsignCallback;
 use Joba\Esign\Laravel\Middleware\VerifyWebhookSignature;
 use PHPUnit\Framework\TestCase;
 use Symfony\Component\HttpFoundation\Response;
@@ -140,30 +139,6 @@ class CallbackMiddlewareTest extends TestCase
             [CallbackVerificationException::class],
             [InvalidResponseException::class],
         ];
-    }
-
-    public function testLegacyMiddlewareStillAuthenticatesAndRejectsModifiedCallbacks(): void
-    {
-        $legacy = new VerifyEsignCallback(new Client([
-            'app_id' => 'test-app',
-            'app_secret' => self::SECRET,
-            'sandbox' => true,
-        ]));
-        $expected = new Response('accepted', 202);
-
-        $response = $legacy->handle($this->signedRequest(self::BODY), function (Request $request) use ($expected) {
-            $this->assertSame('SIGN_FLOW_COMPLETE', $request->attributes->get('esign_callback')['action']);
-
-            return $expected;
-        });
-        $this->assertSame($expected, $response);
-
-        $modified = $this->signedRequest(self::BODY);
-        $modified->headers->set('X-Tsign-Open-Signature', str_repeat('0', 64));
-        $rejected = $legacy->handle($modified, function () {
-            $this->fail('The legacy class must continue to reject unauthenticated callbacks.');
-        });
-        $this->assertSame(401, $rejected->getStatusCode());
     }
 
     private function middleware(): VerifyWebhookSignature

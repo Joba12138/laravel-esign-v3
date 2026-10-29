@@ -44,6 +44,8 @@ Laravel 自动发现并注册服务。发布配置文件到 `config/esign.php`�
 php artisan vendor:publish --provider="Joba\Esign\Laravel\ServiceProvider" --tag=esign-config
 ```
 
+该命令仅发布 `config/esign.php`，不生成中间件。旧版本已发布的文件不会自动删除，迁移方式见[回调验签](#回调验签)。
+
 在 `.env` 中配置应用凭据：
 
 ```dotenv
@@ -298,7 +300,9 @@ $payload = $request->attributes->get('esign_callback');
 
 中间件不会提前应答或吞掉业务异常。控制器应先将事件可靠持久化，再返回成功；耗时操作可交给队列处理。接收方应实现事件去重和状态幂等，避免重复回调导致重复执行。
 
-中间件类为 `Joba\Esign\Laravel\Middleware\VerifyWebhookSignature`，可直接通过别名使用，无需发布或继承。旧类 `VerifyEsignCallback` 保留兼容。
+中间件类为 `Joba\Esign\Laravel\Middleware\VerifyWebhookSignature`，可直接通过别名使用，无需发布或继承。
+
+旧中间件 `VerifyEsignCallback` 已移除。升级前，将回调路由及 `app/Http/Kernel.php` 中对旧类或本地继承类的引用替换为 `esign.signature`（直接使用类名时改为 `VerifyWebhookSignature::class`），再删除旧版生成的 `app/Http/Middleware/VerifyEsignCallback.php`。如果本地类添加过自定义逻辑，先将该逻辑迁移到业务中间件。
 
 ### 手动验签
 
