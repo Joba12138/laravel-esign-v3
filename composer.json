@@ -1,0 +1,54 @@
+{
+    "name": "joba/laravel-esign-v3",
+    "description": "E签宝 SaaS API V3 PHP SDK，支持 Laravel 服务容器、Facade 和回调验签",
+    "type": "library",
+    "license": "MIT",
+    "keywords": ["esign", "esign-v3", "laravel", "电子签名", "E签宝"],
+    "require": {
+        "php": "^7.4 || ^8.0",
+        "ext-hash": "*",
+        "ext-json": "*",
+        "guzzlehttp/guzzle": "^7.0.1",
+        "guzzlehttp/psr7": "^1.9.1 || ^2.0",
+        "psr/http-message": "^1.0 || ^2.0"
+    },
+    "require-dev": {
+        "illuminate/config": "^8.0",
+        "illuminate/container": "^8.0",
+        "illuminate/http": "^8.0",
+        "illuminate/support": "^8.0",
+        "phpunit/phpunit": "^9.5",
+        "vlucas/phpdotenv": "^5.4"
+    },
+    "suggest": {
+        "illuminate/support": "Laravel 自动发现、配置发布和 Facade 集成；使用 Laravel 时由框架提供"
+    },
+    "autoload": {
+        "psr-4": {
+            "Joba\\Esign\\": "src/"
+        }
+    },
+    "autoload-dev": {
+        "psr-4": {
+            "Joba\\Esign\\Tests\\": "tests/"
+        }
+    },
+    "extra": {
+        "laravel": {
+            "providers": ["Joba\\Esign\\Laravel\\ServiceProvider"],
+            "aliases": {
+                "Esign": "Joba\\Esign\\Laravel\\Facades\\Esign"
+            }
+        }
+    },
+    "scripts": {
+        "test": "phpunit"
+    },
+    "config": {
+        "allow-plugins": {},
+        "platform": {
+            "php": "7.4.33"
+        },
+        "sort-packages": true
+    }
+}

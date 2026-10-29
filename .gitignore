@@ -1,0 +1,31 @@
+# Dependencies and local Composer credentials
+/vendor/
+/composer.lock
+/composer.phar
+/auth.json
+
+# Local environment files; keep the distributable example
+/.env
+/.env.*
+!/.env.example
+
+# IDE and operating system files
+/.idea/
+/.vscode/
+.DS_Store
+Thumbs.db
+
+# Local test configuration and generated reports
+/phpunit.xml
+/.phpunit.result.cache
+/.phpunit.cache/
+/coverage/
+
+# Logs, caches, build output and temporary files
+*.log
+/.cache/
+/dist/
+/tmp/
+*.swp
+*.swo
+*~
