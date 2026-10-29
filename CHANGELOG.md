@@ -2,14 +2,19 @@
 
 ## Unreleased
 
+## 1.0.1 - 2026-10-29
+
+- 移除已废弃的 `VerifyEsignCallback` 兼容类；已有引用和本地继承类需迁移到 `esign.signature` 或 `VerifyWebhookSignature`。
+- 明确 `esign-config` 仅发布配置文件，并补充旧版中间件文件的清理和迁移步骤。
+
+## 1.0.0 - 2026-10-27
+
 - Composer 包名改为 `joba-tech/laravel-esign-v3`，PHP 命名空间 `Joba\Esign` 与 `app('esign')` 调用保持兼容。
 
 - 回调验签中间件命名为 `VerifyWebhookSignature`，自动注册 `esign.signature` 路由别名，默认无需发布或继承。
-- 移除已废弃的 `VerifyEsignCallback` 兼容类；已有引用和本地继承类需迁移到 `esign.signature` 或 `VerifyWebhookSignature`。
+- 保留 `VerifyEsignCallback` 兼容类，已有引用和本地继承类可继续使用。
 - 移除 `esign-middleware` 发布入口及 `resources/stubs` 模板，保留配置发布。
-- 更新回调接入和旧中间件迁移文档，并覆盖新中间件及不同 Router 启动顺序的别名注册测试。
-
-## 1.0.0 - 2026-10-27
+- 更新回调接入文档，并覆盖新中间件、旧类兼容及不同 Router 启动顺序的别名注册测试。
 
 - 提供 E签宝开放平台 V3 HMAC-SHA256 请求签名、统一响应与异常。
 - 封装文件、文档模板、签署流程、实名认证、印章、企业成员和订单资源。
